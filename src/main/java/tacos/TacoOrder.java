@@ -13,5 +13,7 @@ public record TacoOrder(
         String ccCVV,
         List<Taco> tacos
 ) {
-    public void addTaco(Taco taco) { this.tacos.add(taco); }
+    public void addTaco(Taco taco) {
+        this.tacos.add(taco);
+    }
 }
