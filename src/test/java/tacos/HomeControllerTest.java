@@ -15,7 +15,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(HomeController.class)
 public class HomeControllerTest {
 
-    @Autowired
+
+    @Autowired // @Autowired allows Spring to resolve and inject collaborating beans into our bean
     private MockMvc mockMvc;
 
     @Test
