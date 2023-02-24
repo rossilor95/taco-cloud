@@ -1,6 +1,6 @@
 package tacos;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public record TacoOrder(
@@ -15,7 +15,7 @@ public record TacoOrder(
         List<Taco> tacos
 ) {
     public TacoOrder() {
-        this("","", "", "", "", "", "", "", Collections.emptyList());
+        this("", "", "", "", "", "", "", "", new ArrayList<>());
     }
 
     public void addTaco(Taco taco) {
