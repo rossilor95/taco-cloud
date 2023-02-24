@@ -1,0 +1,17 @@
+:root {
+    margin: 1em 2em 1em 2em;
+    font-family: JetSansDigital, Arial, sans-serif;
+}
+
+body {
+    font-size: 14px;
+}
+
+.ingredient-form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ingredient-group {
+    margin: 0.5em 0.5em 2em 0.5em;
+}
