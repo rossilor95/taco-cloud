@@ -1,5 +1,6 @@
 package tacos;
 
+import java.util.Collections;
 import java.util.List;
 
 public record TacoOrder(
@@ -13,6 +14,10 @@ public record TacoOrder(
         String ccCVV,
         List<Taco> tacos
 ) {
+    public TacoOrder() {
+        this("","", "", "", "", "", "", "", Collections.emptyList());
+    }
+
     public void addTaco(Taco taco) {
         this.tacos.add(taco);
     }
