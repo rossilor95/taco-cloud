@@ -7,11 +7,11 @@ body {
     font-size: 14px;
 }
 
-.ingredient-form {
+.form {
     display: flex;
     justify-content: space-between;
 }
 
-.ingredient-group {
+.form-group {
     margin: 0.5em 0.5em 2em 0.5em;
 }
