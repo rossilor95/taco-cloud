@@ -115,4 +115,19 @@ public class TacoOrder {
     public void setTacos(List<Taco> tacos) {
         this.tacos = tacos;
     }
+
+    @Override
+    public String toString() {
+        return "TacoOrder{" +
+                "deliveryCity='" + deliveryCity + '\'' +
+                ", deliveryStreet='" + deliveryStreet + '\'' +
+                ", deliveryName='" + deliveryName + '\'' +
+                ", deliveryState='" + deliveryState + '\'' +
+                ", deliveryZip='" + deliveryZip + '\'' +
+                ", ccNumber='" + ccNumber + '\'' +
+                ", ccExpiration='" + ccExpiration + '\'' +
+                ", ccCVV='" + ccCVV + '\'' +
+                ", tacos=" + tacos +
+                '}';
+    }
 }
