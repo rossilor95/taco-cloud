@@ -6,6 +6,10 @@ import tacos.Ingredient;
 
 import java.util.Map;
 
+/**
+ * This class automatically converts ingredients string ids returned from the <code>/design</code> template view into
+ * ingredient types.
+ */
 @Component
 public class IngredientsByIdConverter implements Converter<String, Ingredient> {
     private final Map<String, Ingredient> ingredientMap = Map.of(
