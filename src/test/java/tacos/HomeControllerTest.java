@@ -15,19 +15,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(HomeController.class)
 public class HomeControllerTest {
 
-
     @Autowired // @Autowired allows Spring to resolve and inject collaborating beans into our bean
     private MockMvc mockMvc;
 
     @Test
-    public void testHomePage() throws Exception {
+    public void shouldShowHomePage() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("home"))
                 .andExpect(content().string(
                         containsString("Welcome to Taco Cloud!")
                 ));
-
     }
-
 }
