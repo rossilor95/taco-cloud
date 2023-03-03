@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Taco Cloud</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img th:src="@{/images/taco-cloud.png}" alt="Taco Cloud Logo" width="30" height="24"
+                     class="d-inline-block align-text-top">
+                Taco Cloud
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/design">Design</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main>
+    <div class="container">
+
+        <div class="px-4 py-5 text-center">
+            <h1>Order your taco creations!</h1>
+        </div>
+
+        <form method="post" th:action="@{/orders}" th:object="${tacoOrder}">
+            <div class="row g-5 mb-5">
+                <div class="col">
+                    <h2 class="h4">Deliver my taco masterpieces to...</h2>
+                    <div class="mb-3">
+                        <label for="deliveryName" class="form-label">Name: </label>
+                        <input type="text" class="form-control" th:field="*{deliveryName}"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="deliveryStreet" class="form-label">Street address: </label>
+                        <input type="text" class="form-control" th:field="*{deliveryStreet}"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="deliveryCity" class="form-label">City: </label>
+                        <input type="text" class="form-control" th:field="*{deliveryCity}"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="deliveryState" class="form-label">State: </label>
+                        <input type="text" class="form-control" th:field="*{deliveryState}"/>
+                    </div>
+                    <div>
+                        <label for="deliveryZip" class="form-label">Zip code: </label>
+                        <input type="text" class="form-control" th:field="*{deliveryZip}"/>
+                    </div>
+                </div>
+                <div class="col">
+                    <h2 class="h4">Here's how I'll pay...</h2>
+                    <div class="mb-3">
+                        <label for="ccNumber" class="form-label">Credit Card #: </label>
+                        <input type="text" class="form-control" th:field="*{ccNumber}"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ccExpiration" class="form-label">Expiration: </label>
+                        <input type="text" class="form-control" th:field="*{ccExpiration}"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ccCVV" class="form-label">CVV: </label>
+                        <input type="text" class="form-control" th:field="*{ccCVV}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h2 class="h4">Your tacos in this order:</h2>
+                    <ul>
+                        <li th:each="taco : ${tacoOrder.tacos}">
+                            <span th:text="${taco.name}">TACO NAME</span>
+                        </li>
+                    </ul>
+                    <input type="submit" value="Submit order" class="btn btn-primary">
+                    <a class="btn btn-outline-primary" href="/design" id="another">Design another taco</a>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+</html>
