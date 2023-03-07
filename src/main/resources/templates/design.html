@@ -91,10 +91,8 @@
                                th:field="*{name}"
                                th:classappend="${not #lists.isEmpty(#fields.errors('name'))} ? is-invalid"
                         />
-                        <div class="invalid-feedback">
-                            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
-                                TACO NAME ERROR
-                            </p>
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+                            TACO NAME ERROR
                         </div>
                     </div>
                     <button class="btn btn-primary">Submit Your Taco</button>
