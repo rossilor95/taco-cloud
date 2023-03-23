@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import tacos.Ingredient;
 
+import java.util.List;
 import java.util.Optional;
 
 // When Spring Data JDBC is on the classpath, Spring automatically creates an instance of JdbcTemplate and injects it
@@ -34,7 +35,7 @@ public class JdbcIngredientRepository implements IngredientRepository {
     }
 
     @Override
-    public Iterable<Ingredient> findAll() {
+    public List<Ingredient> findAll() {
         return jdbcTemplate.query("select id, name, type from ingredient", ingredientRowMapper);
     }
 
