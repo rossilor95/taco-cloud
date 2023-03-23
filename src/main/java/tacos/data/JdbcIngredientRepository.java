@@ -19,17 +19,16 @@ import java.util.Optional;
 @Repository
 public class JdbcIngredientRepository implements IngredientRepository {
     private static final Logger log = LoggerFactory.getLogger(JdbcIngredientRepository.class);
-    RowMapper<Ingredient> ingredientRowMapper = (rs, rowNum) -> {
-        Ingredient ingredient = new Ingredient(
-                rs.getString("id"),
-                rs.getString("name"),
-                Ingredient.Type.valueOf(rs.getString("type"))
-        );
-        return ingredient;
-    };
-    private JdbcTemplate jdbcTemplate;
 
+    private final RowMapper<Ingredient> ingredientRowMapper = (rs, rowNum) -> new Ingredient(
+            rs.getString("id"),
+            rs.getString("name"),
+            Ingredient.Type.valueOf(rs.getString("type"))
+    );
 
+    private final JdbcTemplate jdbcTemplate;
+
+    @Autowired
     public JdbcIngredientRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
