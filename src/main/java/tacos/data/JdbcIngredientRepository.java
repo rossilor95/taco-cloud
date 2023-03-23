@@ -2,6 +2,8 @@ package tacos.data;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -38,11 +40,23 @@ public class JdbcIngredientRepository implements IngredientRepository {
 
     @Override
     public Optional<Ingredient> findById(String id) {
-        return Optional.empty();
+        String sql = "select id, name,type from ingredient where id = ?";
+        Ingredient ingredient = null;
+        try {
+            ingredient = jdbcTemplate.queryForObject(sql, ingredientRowMapper, id);
+        } catch (DataAccessException e) {
+            log.info("Ingredient not found: " + id);
+        }
+        return Optional.ofNullable(ingredient);
     }
 
     @Override
     public Ingredient save(Ingredient ingredient) {
-        return null;
+        String sql = "insert into ingredient(id, name, type) values(?, ?, ?)";
+        int affectedRows = jdbcTemplate.update(sql, ingredient.getId(), ingredient.getName(), ingredient.getType());
+        if (affectedRows == 1) {
+            log.info("New ingredient added: " + ingredient.getName());
+        }
+        return ingredient;
     }
 }
