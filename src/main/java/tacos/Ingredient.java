@@ -35,6 +35,14 @@ public class Ingredient {
         this.type = type;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ingredient ingredient = (Ingredient) o;
+        return id.equals(ingredient.id) && name.equals(ingredient.name) && type.equals(ingredient.type);
+    }
+
     public enum Type {
         WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
     }
