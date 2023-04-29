@@ -1,14 +1,7 @@
 package tacos.data;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import tacos.Ingredient;
 
-import java.util.List;
-import java.util.Optional;
-
-public interface IngredientRepository {
-    List<Ingredient> findAll();
-
-    Optional<Ingredient> findById(String id);
-
-    Ingredient save(Ingredient ingredient);
+public interface IngredientRepository extends JpaRepository<Ingredient, String> {
 }
