@@ -1,9 +1,23 @@
 package tacos;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+
+@Entity(name = "ingredient")
 public class Ingredient {
+
+    @Id
     private String id;
+
     private String name;
+
+    @Enumerated(EnumType.STRING)
     private Type type;
+
+    public Ingredient() {
+    }
 
     public Ingredient(String id, String name, Type type) {
         this.id = id;
@@ -42,6 +56,7 @@ public class Ingredient {
         Ingredient ingredient = (Ingredient) o;
         return id.equals(ingredient.id) && name.equals(ingredient.name) && type.equals(ingredient.type);
     }
+
 
     public enum Type {
         WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
