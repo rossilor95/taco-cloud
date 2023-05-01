@@ -1,4 +1,4 @@
-package tacos.web;
+package taco_cloud.web;
 
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import tacos.Ingredient;
-import tacos.Ingredient.Type;
-import tacos.Taco;
-import tacos.TacoOrder;
-import tacos.data.IngredientRepository;
+import taco_cloud.Ingredient;
+import taco_cloud.Ingredient.Type;
+import taco_cloud.Taco;
+import taco_cloud.TacoOrder;
+import taco_cloud.data.IngredientRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;

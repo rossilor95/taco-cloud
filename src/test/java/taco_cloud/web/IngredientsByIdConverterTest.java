@@ -1,4 +1,4 @@
-package tacos.web;
+package taco_cloud.web;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
