@@ -1,12 +1,12 @@
-package taco_cloud.web;
+package tacos.web;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import taco_cloud.Ingredient;
-import taco_cloud.data.IngredientRepository;
+import tacos.Ingredient;
+import tacos.data.IngredientRepository;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;

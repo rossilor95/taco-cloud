@@ -1,4 +1,4 @@
-package taco_cloud;
+package tacos;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
