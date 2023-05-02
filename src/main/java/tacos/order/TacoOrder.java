@@ -1,9 +1,10 @@
-package tacos;
+package tacos.order;
 
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.CreditCardNumber;
+import tacos.design.Taco;
 
 import java.io.Serializable;
 import java.util.ArrayList;

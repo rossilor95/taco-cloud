@@ -1,4 +1,4 @@
-package tacos.web;
+package tacos.order;
 
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import tacos.TacoOrder;
+import tacos.design.DesignTacoController;
 
 /**
  * This controller handles requests for <code>/orders/current</code>. After submitting a taco creation from
@@ -21,7 +21,7 @@ import tacos.TacoOrder;
 @RequestMapping("/orders")
 @SessionAttributes("tacoOrder")
 public class OrderController {
-    private static final Logger log = LoggerFactory.getLogger(DesignTacoController.class);
+    private static final Logger log = LoggerFactory.getLogger(OrderController.class);
 
     @GetMapping("/current")
     public String showOrderForm() {

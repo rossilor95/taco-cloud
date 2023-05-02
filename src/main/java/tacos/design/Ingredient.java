@@ -1,4 +1,4 @@
-package tacos;
+package tacos.design;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

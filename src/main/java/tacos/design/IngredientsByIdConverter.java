@@ -1,11 +1,11 @@
-package tacos.web;
+package tacos.design;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
-import tacos.Ingredient;
-import tacos.data.IngredientRepository;
+import tacos.design.Ingredient;
+import tacos.design.IngredientRepository;
 
 /**
  * This class automatically converts ingredients string ids returned from the <code>/design</code> template view into
