@@ -1,13 +1,10 @@
-package tacos.order;
+package tacos.design;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import tacos.design.Ingredient;
-import tacos.design.IngredientRepository;
-import tacos.design.IngredientsByIdConverter;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
