@@ -57,6 +57,15 @@ public class Ingredient {
         return id.equals(ingredient.id) && name.equals(ingredient.name) && type.equals(ingredient.type);
     }
 
+    @Override
+    public String toString() {
+        return "Ingredient{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", type=" + type +
+                '}';
+    }
+
 
     public enum Type {
         WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
