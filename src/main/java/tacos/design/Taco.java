@@ -3,7 +3,8 @@ package tacos.design;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import java.util.Date;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 public class Taco {
@@ -18,7 +19,7 @@ public class Taco {
 
     private Long id;
 
-    private Date createdAt;
+    private ZonedDateTime createdAt;
 
     public Taco() {
     }
@@ -26,6 +27,11 @@ public class Taco {
     public Taco(String name, List<Ingredient> ingredients) {
         this.name = name;
         this.ingredients = ingredients;
+        this.createdAt = ZonedDateTime.now(ZoneId.of("Europe/Rome"));
+    }
+
+    public ZonedDateTime getCreatedAt() {
+        return createdAt;
     }
 
     public Long getId() {
@@ -34,14 +40,6 @@ public class Taco {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
     }
 
     public String getName() {
