@@ -5,7 +5,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 
-@Entity(name = "ingredient")
+@Entity
 public class Ingredient {
 
     @Id
