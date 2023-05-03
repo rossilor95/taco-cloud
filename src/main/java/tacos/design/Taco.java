@@ -1,5 +1,9 @@
 package tacos.design;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -7,17 +11,20 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
 
+@Entity
 public class Taco {
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
     @NotNull
     @Size(min = 5, message = "Name must be at least 5 characters long")
     private String name;
 
-    @NotNull
     @Size(min = 1, message = "You must choose at least 1 ingredient")
+    @ManyToMany
     private List<Ingredient> ingredients;
-
-    private Long id;
 
     private ZonedDateTime createdAt;
 
