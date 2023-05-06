@@ -7,31 +7,42 @@ import org.hibernate.validator.constraints.CreditCardNumber;
 import tacos.design.Taco;
 
 import java.io.Serializable;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class TacoOrder implements Serializable {
-
     private static final long serialVersionUid = 1L;
+
     private long id;
-    private Date placedAt;
+
+    private ZonedDateTime placedAt;
+
     @NotBlank(message = "City is required")
     private String deliveryCity;
+
     @NotBlank(message = "Street is required")
     private String deliveryStreet;
+
     @NotBlank(message = "Delivery name is required")
     private String deliveryName;
+
     @NotBlank(message = "State is required")
     private String deliveryState;
+
     @NotBlank(message = "Zip code is required")
     private String deliveryZip;
+
     @CreditCardNumber(message = "Not a valid credit card number")
     private String ccNumber;
+
     @Pattern(regexp = "^(0[1-9]|1[0-2])/([2-9][4-9])", message = "Must be formatted MM/YY")
     private String ccExpiration;
+
     @Digits(integer = 3, fraction = 0, message = "Invalid CCV")
     private String ccCVV;
+
     private List<Taco> tacos = new ArrayList<>();
 
     public TacoOrder() {
@@ -48,6 +59,7 @@ public class TacoOrder implements Serializable {
             String ccCVV,
             List<Taco> tacos
     ) {
+        this.placedAt = ZonedDateTime.now(ZoneId.of("Europe/Rome"));
         this.deliveryCity = deliveryCity;
         this.deliveryStreet = deliveryStreet;
         this.deliveryName = deliveryName;
@@ -67,12 +79,8 @@ public class TacoOrder implements Serializable {
         this.id = id;
     }
 
-    public Date getPlacedAt() {
+    public ZonedDateTime getPlacedAt() {
         return placedAt;
-    }
-
-    public void setPlacedAt(Date placedAt) {
-        this.placedAt = placedAt;
     }
 
     public void addTaco(Taco taco) {
@@ -154,7 +162,9 @@ public class TacoOrder implements Serializable {
     @Override
     public String toString() {
         return "TacoOrder{" +
-                "deliveryCity='" + deliveryCity + '\'' +
+                "id=" + id +
+                ", placedAt=" + placedAt +
+                ", deliveryCity='" + deliveryCity + '\'' +
                 ", deliveryStreet='" + deliveryStreet + '\'' +
                 ", deliveryName='" + deliveryName + '\'' +
                 ", deliveryState='" + deliveryState + '\'' +
