@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import tacos.design.Ingredient.Type;
 import tacos.order.TacoOrder;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,7 +56,7 @@ public class DesignTacoController {
 
     @ModelAttribute(name = "taco")
     public Taco taco() {
-        return new Taco();
+        return new Taco(ZonedDateTime.now(ZoneId.of("Europe/Rome")));
     }
 
     @ModelAttribute(name = "tacoOrder")

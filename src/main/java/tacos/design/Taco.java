@@ -8,7 +8,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.data.annotation.CreatedDate;
 
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -31,6 +30,10 @@ public class Taco {
     private ZonedDateTime createdAt;
 
     public Taco() {
+    }
+
+    public Taco(ZonedDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Taco(String name, List<Ingredient> ingredients) {
@@ -69,8 +72,7 @@ public class Taco {
     @Override
     public String toString() {
         return "Taco{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", ingredients=" + ingredients +
                 ", createdAt=" + createdAt +
                 '}';
