@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -26,6 +27,7 @@ public class Taco {
     @ManyToMany
     private List<Ingredient> ingredients;
 
+    @CreatedDate
     private ZonedDateTime createdAt;
 
     public Taco() {
@@ -34,7 +36,6 @@ public class Taco {
     public Taco(String name, List<Ingredient> ingredients) {
         this.name = name;
         this.ingredients = ingredients;
-        this.createdAt = ZonedDateTime.now(ZoneId.of("Europe/Rome"));
     }
 
     public ZonedDateTime getCreatedAt() {
@@ -68,8 +69,10 @@ public class Taco {
     @Override
     public String toString() {
         return "Taco{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", ingredients=" + ingredients +
+                ", createdAt=" + createdAt +
                 '}';
     }
 }
