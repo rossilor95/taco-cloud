@@ -3,6 +3,7 @@ package tacos.order;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,12 @@ import org.springframework.web.bind.support.SessionStatus;
 @SessionAttributes("tacoOrder")
 public class OrderController {
     private static final Logger log = LoggerFactory.getLogger(OrderController.class);
+    private final OrderRepository orderRepository;
+
+    @Autowired
+    public OrderController(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
 
     @GetMapping("/current")
     public String showOrderForm() {
@@ -33,6 +40,7 @@ public class OrderController {
             return "orderForm";
         }
         log.info("Order submitted: {}", order);
+        orderRepository.save(order);
         sessionStatus.setComplete();
         return "redirect:/";
     }
