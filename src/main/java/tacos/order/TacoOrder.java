@@ -1,5 +1,11 @@
 package tacos.order;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -12,12 +18,14 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TacoOrder implements Serializable {
-    private static final long serialVersionUid = 1L;
+@Entity
+public class TacoOrder {
 
+    @Id
+    @GeneratedValue
     private long id;
 
-    private ZonedDateTime placedAt;
+    private ZonedDateTime placedAt = ZonedDateTime.now(ZoneId.of("Europe/Rome"));
 
     @NotBlank(message = "City is required")
     private String deliveryCity;
@@ -43,6 +51,7 @@ public class TacoOrder implements Serializable {
     @Digits(integer = 3, fraction = 0, message = "Invalid CCV")
     private String ccCVV;
 
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Taco> tacos = new ArrayList<>();
 
     public TacoOrder() {
