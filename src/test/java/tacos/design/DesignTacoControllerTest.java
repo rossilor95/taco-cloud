@@ -1,12 +1,13 @@
 package tacos.design;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+
 import tacos.order.TacoOrder;
 
 import java.util.List;
@@ -18,65 +19,54 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 class DesignTacoControllerTest {
-    AutoCloseable closeable;
+    private final List<Ingredient> INGREDIENTS = List.of(
+            new Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP),
+            new Ingredient("GRBF", "Ground Beef", Ingredient.Type.PROTEIN),
+            new Ingredient("CHED", "Cheddar", Ingredient.Type.CHEESE)
+    );
 
     @Mock
-    IngredientRepository ingredientRepository;
+    private IngredientRepository ingredientRepository;
 
     @Mock
-    Model model;
+    private Model model;
 
     @Mock
-    Errors errors;
+    private Errors errors;
+
+    private DesignTacoController designTacoController;
 
     @BeforeEach
     void setup() {
-        closeable = MockitoAnnotations.openMocks(this);
-    }
-
-    @AfterEach
-    void tearDown() throws Exception {
-        closeable.close();
-
+        designTacoController = new DesignTacoController(ingredientRepository);
     }
 
     @Test
     public void shouldAddIngredientsToModel() {
         // Given
-        var ingredients = List.of(
-                new Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP),
-                new Ingredient("GRBF", "Ground Beef", Ingredient.Type.PROTEIN),
-                new Ingredient("CHED", "Cheddar", Ingredient.Type.CHEESE)
-        );
-        when(ingredientRepository.findAll()).thenReturn(ingredients);
-        var designTacoController = new DesignTacoController(ingredientRepository);
+        when(ingredientRepository.findAll()).thenReturn(INGREDIENTS);
 
         // When
         designTacoController.addIngredientsToModel(model);
 
         // Then
         assertAll(
-                () -> verify(model, times(1)).addAttribute("wrap", ingredients.subList(0, 1)),
-                () -> verify(model, times(1)).addAttribute("protein", ingredients.subList(1, 2)),
-                () -> verify(model, times(1)).addAttribute("cheese", ingredients.subList(2, 3))
+                () -> verify(model, times(1)).addAttribute("wrap", INGREDIENTS.subList(0, 1)),
+                () -> verify(model, times(1)).addAttribute("protein", INGREDIENTS.subList(1, 2)),
+                () -> verify(model, times(1)).addAttribute("cheese", INGREDIENTS.subList(2, 3))
         );
     }
 
     @Test
     public void shouldProcessTaco() {
         // Given
-        var ingredients = List.of(
-                new Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP),
-                new Ingredient("GRBF", "Ground Beef", Ingredient.Type.PROTEIN),
-                new Ingredient("CHED", "Cheddar", Ingredient.Type.CHEESE)
-        );
-        var taco = new Taco("Test Taco", ingredients);
+        var taco = new Taco("Test Taco", INGREDIENTS);
         var tacoOrder = new TacoOrder();
-        var designerTacoController = new DesignTacoController(ingredientRepository);
 
         // When
-        String viewName = designerTacoController.processTaco(taco, errors, tacoOrder);
+        String viewName = designTacoController.processTaco(taco, errors, tacoOrder);
 
         // Then
         assertEquals("redirect:/orders/current", viewName);
