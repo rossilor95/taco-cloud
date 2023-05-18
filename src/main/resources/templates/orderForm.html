@@ -107,7 +107,7 @@
                     <h2 class="h4">Here's how I'll pay...</h2>
                     <div class="mb-3">
                         <label for="ccNumber" class="form-label">Credit Card #: </label>
-                        <input type="text" class="form-control"
+                        <input type="text" maxlength="16" class="form-control"
                                th:field="*{ccNumber}"
                                th:classappend="${not #lists.isEmpty(#fields.errors('ccNumber'))} ? is-invalid"
                         />
