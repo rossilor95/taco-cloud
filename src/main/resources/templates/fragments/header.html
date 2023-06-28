@@ -1,0 +1,19 @@
+<nav th:fragment="header (activePage)" class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img th:src="@{/images/taco-cloud.png}" alt="Taco Cloud Logo" width="30" height="24"
+           class="d-inline-block align-text-top">
+      Taco Cloud
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" th:classappend="${activePage} == 'home' ? 'active' : ''" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:classappend="${activePage} == 'design' ? 'active' : ''" href="/design">Design</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
